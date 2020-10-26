@@ -1,11 +1,11 @@
-Quando("pesquiso marca {string}") do |marca|
+Quando(/^pesquiso marca "([^"]*)"$/) do |marca|
   @marca = marca
   find("input[id=searchBar]").set marca
   click_link @marca
   sleep 4
 end
 
-Quando("pesquiso modelo {string}") do |modelo|
+Quando(/^pesquiso modelo "([^"]*)"$/) do |modelo|
   @modelo = modelo
   find("input[id=searchBar]").set modelo
   click_link @modelo
@@ -22,7 +22,7 @@ Quando("seleciono a primeira versão") do
   sleep 4
 end
 
-Quando("seleciono a versao {string}") do |versao|
+Quando(/^seleciono a versao "([^"]*)"$/) do |versao|
   @versao = versao
   find(".Filters__line.Filters__line__result", :text => @versao).click
   sleep 4
@@ -30,7 +30,7 @@ Quando("seleciono a versao {string}") do |versao|
   sleep 4
 end
 
-Então("devo ver o seguinte texto: {string}") do |texto|
+Então(/^devo ver o seguinte texto: "([^"]*)"$/) do |texto|
   @texto = texto
   sleep 10
   page_downcased = page.body.downcase

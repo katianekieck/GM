@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "0ebdbdc4-65ec-47ec-be87-3a4b0c6541a3",
+		"name": "GMOnlineChallenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/OnlineChallenge/Make",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b7225a7-84a7-4fa9-8a48-a3d3c56a017e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verifica os campos ID e Name da marca honda\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var marca = jsonData.find((marca) => marca.Name ==='Honda') || '';",
+							"    pm.expect(marca).to.have.property('Name').to.be.a(\"string\");",
+							"    pm.expect(marca).to.have.property('ID').to.be.a(\"number\");",
+							"    pm.expect(marca.Name).to.eql(\"Honda\");",
+							"    // Atualiza variavel da collection para outros testes seguintes",
+							"    pm.variables.set(\"marca\", marca.ID);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Make",
+					"protocol": "http",
+					"host": [
+						"desafioonline",
+						"webmotors",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"OnlineChallenge",
+						"Make"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/OnlineChallenge/Model",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "829c6a72-da40-4147-8230-fd2bc81ec9c1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verifica os campos ID e Name do modelo City\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var model = jsonData.find((model) => model.Name ==='City') || '';",
+							"    pm.expect(model).to.have.property('Name').to.be.a(\"string\");",
+							"    pm.expect(model).to.have.property('ID').to.be.a(\"number\");",
+							"    pm.expect(model.Name).to.eql(\"City\");",
+							"    // Atualiza variavel da collection para outros testes seguintes",
+							"    pm.variables.set(\"model\", model.ID);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Model?MakeID={{marca}}",
+					"protocol": "http",
+					"host": [
+						"desafioonline",
+						"webmotors",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"OnlineChallenge",
+						"Model"
+					],
+					"query": [
+						{
+							"key": "MakeID",
+							"value": "{{marca}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/OnlineChallenge/Version",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24d0945f-0fb8-4cda-89c7-b1eefaa6ecfa",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verifica os campos ID e Name da versão 1.5 LX 16V FLEX 4P MANUAL\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var versao = jsonData.find((versao) => versao.Name ==='1.5 LX 16V FLEX 4P MANUAL') || '';",
+							"    pm.expect(versao).to.have.property('Name').to.be.a(\"string\");",
+							"    pm.expect(versao).to.have.property('ID').to.be.a(\"number\");",
+							"    pm.expect(versao.Name).to.eql(\"1.5 LX 16V FLEX 4P MANUAL\");",
+							"    // Atualiza variavel da collection para outros testes seguintes",
+							"    pm.variables.set(\"versao\", versao.ID);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Version?MakeID={{marca}}&ModelID={{model}}",
+					"protocol": "http",
+					"host": [
+						"desafioonline",
+						"webmotors",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"OnlineChallenge",
+						"Version"
+					],
+					"query": [
+						{
+							"key": "MakeID",
+							"value": "{{marca}}"
+						},
+						{
+							"key": "ModelID",
+							"value": "{{model}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/OnlineChallenge/Vehicles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ecec6ec-8eba-40e2-818f-e0f45a83ff74",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Verifica um veiculo da marca Honda\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var vehicle = jsonData.find((vehicle) => vehicle.Make ==='Honda') || '';",
+							"    pm.expect(vehicle).to.have.property('ID').to.be.a(\"number\");",
+							"    pm.expect(vehicle).to.have.property('Make').to.be.a(\"string\");",
+							"    pm.expect(vehicle.Make).to.eql(\"Honda\");",
+							"       // Atualiza variavel da collection para outros testes seguintes",
+							"    pm.variables.set(\"vehicle\", vehicle.ID);",
+							"});",
+							"",
+							"pm.test(\"Verifica um veiculo da marca Honda e modelo City\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var vehicle = jsonData.find((vehicle) => vehicle.Make ==='Honda' && vehicle.Model ==='City') || '';",
+							"    pm.expect(vehicle).to.have.property('ID').to.be.a(\"number\");",
+							"    pm.expect(vehicle).to.have.property('Make').to.be.a(\"string\");",
+							"    pm.expect(vehicle.Make).to.eql(\"Honda\");",
+							"    pm.expect(vehicle.Model).to.eql(\"City\");",
+							"       // Atualiza variavel da collection para outros testes seguintes",
+							"    pm.variables.set(\"vehicle\", vehicle.ID);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Vehicles?Page=2",
+					"protocol": "http",
+					"host": [
+						"desafioonline",
+						"webmotors",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"OnlineChallenge",
+						"Vehicles"
+					],
+					"query": [
+						{
+							"key": "Page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0012ff28-92bb-4ac0-b532-b2d322089f87",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1ebe6f20-80b6-4385-8e60-7b3b33465af2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "92efebd6-39cf-4174-9023-0c77c03bbd41",
+			"key": "marca",
+			"value": "2"
+		},
+		{
+			"id": "ecacd35c-adb7-4987-8ae3-52f08affd98c",
+			"key": "model",
+			"value": "4"
+		},
+		{
+			"id": "83c7b3c6-4805-4d20-b971-5afd34e1198f",
+			"key": "versao",
+			"value": "22"
+		},
+		{
+			"id": "cd945601-ad1a-46d2-8dd7-cefbeac7543a",
+			"key": "vehicles",
+			"value": "12"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
